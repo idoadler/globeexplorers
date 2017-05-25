@@ -736,6 +736,7 @@ MonoBehaviour:
   - {fileID: 136226460}
   csv:
   - {fileID: 4900000, guid: 4b269f7ca281b3f49abd96cd8f901730, type: 3}
+  - {fileID: 4900000, guid: ff353622add8c4f4688f9a9995cbb4c0, type: 3}
   group1: 0
   group2: 0
 --- !u!1 &682906132
