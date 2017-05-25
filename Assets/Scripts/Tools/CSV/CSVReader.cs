@@ -21,7 +21,7 @@ public class CSVReader : MonoBehaviour
         string[,] grid = SplitCsvGrid(csvFile.text);
         Debug.Log("size = " + (1 + grid.GetUpperBound(0)) + "," + (1 + grid.GetUpperBound(1)));
 
-        DebugOutputGrid(grid);
+        //DebugOutputGrid(grid);
     }
 
     // outputs the content of a 2D array, useful for checking the importer

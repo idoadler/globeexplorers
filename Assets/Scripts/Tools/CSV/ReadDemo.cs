@@ -14,7 +14,7 @@ public class ReadDemo : MonoBehaviour
 
     void Start()
     {
-        CSVReader.DebugOutputGrid(lines);
+        //CSVReader.DebugOutputGrid(lines);
 
         if (display != null)
         {

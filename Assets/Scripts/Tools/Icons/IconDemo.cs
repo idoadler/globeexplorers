@@ -12,13 +12,9 @@ public class IconDemo : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("1: " + Resources.LoadAll("Icons").Length);
-        Debug.Log("2: " + Resources.LoadAll("Resources/Icons").Length);
         Sprite[] sprites = Resources.LoadAll<Sprite>(iconsPath);
-        Debug.Log("SPRITES: " + iconsPath + sprites.Length);
         foreach (Sprite s in sprites)
         {
-            Debug.Log(s.name);
             icons.Add(s.name, s);
         }
 
