@@ -1664,7 +1664,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2127824377}
+      - m_Target: {fileID: 2127824379}
         m_MethodName: PanelOn
         m_Mode: 3
         m_Arguments:
@@ -1675,7 +1675,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2127824377}
+      - m_Target: {fileID: 2127824379}
         m_MethodName: PanelOff
         m_Mode: 3
         m_Arguments:
@@ -2251,10 +2251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c986de7ff5a1aba4a9d8899796657fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panels:
-  - {fileID: 1635003628}
-  - {fileID: 374304757}
-  - {fileID: 1608089348}
 --- !u!4 &2127824378
 Transform:
   m_ObjectHideFlags: 0
@@ -2276,6 +2272,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2127824376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94acb5462f0e5b14aaaef554efe8558b, type: 3}
+  m_Script: {fileID: 11500000, guid: 138d316e6a273bf47a8147f2b68005eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 1635003628}
+  - {fileID: 374304757}
+  - {fileID: 1608089348}
