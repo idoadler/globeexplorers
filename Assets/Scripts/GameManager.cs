@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
-    public GameObject iconSelectionPrefab;
     public GameObject[] panels;
 
     #region Public Methods
@@ -23,7 +21,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Private Methods
-
+    
     private void Awake()
     {
         Init();
