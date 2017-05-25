@@ -27,10 +27,12 @@ public class QuestionLogic : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        // For testing: Randomize(true);
+        group1 = Random.Range(0, csv.Length);
+        group2 = Random.Range(0, csv.Length);
+        //SetQuestion(true);
     }
 
-    public void Randomize(bool isGroup1)
+    public void SetQuestion(bool isGroup1)
     {
         int subject = group1;
         if (!isGroup1)
