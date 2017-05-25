@@ -35,3 +35,4 @@ build_info.txt
 
 # ignore big assets
 !*.obj
+!*.dll
