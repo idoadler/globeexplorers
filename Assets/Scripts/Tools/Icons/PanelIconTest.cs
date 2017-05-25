@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(GridLayoutGroup))]
 public class PanelIconTest : MonoBehaviour
 {
 
@@ -10,8 +12,14 @@ public class PanelIconTest : MonoBehaviour
     // Use this for initialization
     public void Init(string[] words, Sprite[] images)
     {
+        int length = words.Length;
 
-        for (int i = 0; i < words.Length; i++)
+        float width = this.gameObject.GetComponent<RectTransform>().rect.width;
+        width = Mathf.Min(width / length, this.gameObject.GetComponent<RectTransform>().rect.height*.8f);
+        Vector2 newSize = new Vector2(width, (width * 1.25f));
+        gameObject.GetComponent<GridLayoutGroup>().cellSize = newSize;
+
+        for (int i = 0; i < length; i++)
         {
             GameObject newCell = Instantiate(CellPrefab.gameObject) as GameObject;
             newCell.GetComponent<CellExample>().Init(words[i], images[i]);
