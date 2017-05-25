@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public static class StaticData
 {
@@ -7,6 +8,8 @@ public static class StaticData
     public static Sprite[] iconPool;
 
     public static int currentTeam = 0;
+
+    public static Selectable lastSelected;
 
     public static void Init()
     {
@@ -19,5 +22,15 @@ public static class StaticData
     public static void ChangeTeamIcon(int team, int icon)
     {
         teamIcons[team] = iconPool[icon];
+    }
+}
+
+public struct Point
+{
+    public int X;
+    public int Y;
+    public static implicit operator Vector2(Point p)
+    {
+        return new Vector2(p.X, p.Y);
     }
 }
