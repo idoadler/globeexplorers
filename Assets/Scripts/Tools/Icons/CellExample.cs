@@ -11,5 +11,6 @@ public class CellExample : MonoBehaviour {
     {
         txt.text = ArabicSupport.ArabicFixer.Fix(text);
         img.sprite = sprite;
+        img.enabled = (sprite != null);
     }
 }

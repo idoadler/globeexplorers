@@ -35,12 +35,11 @@ public class IconDemo : MonoBehaviour {
         answers[0].text = ArabicSupport.ArabicFixer.Fix(questionsFile.lines[1, r]);
         for (int i = 1; i < answers.Length; i++)
         {
-            int r2 = Random.Range(0, questionsFile.lines.GetLength(1));
+            int r2 = Random.Range(0, questionsFile.lines.GetLength(1)-1);
             while (r2 == r)
             {
-                r2 = Random.Range(0, questionsFile.lines.GetLength(1));
+                r2 = Random.Range(0, questionsFile.lines.GetLength(1)-1);
             }
-            Debug.Log(r2);
             answers[i].text = ArabicSupport.ArabicFixer.Fix(questionsFile.lines[1, r2]);
         }
         //icons = IconMatcher.GetIcons(iconsPath);
