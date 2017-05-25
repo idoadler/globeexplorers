@@ -6,42 +6,42 @@ using UnityEngine.UI;
 public class IconSelectionPopulator : MonoBehaviour
 {
 
-    [SerializeField] private IconSelectionButton iconSelectionButtonPrefab;
-    private Transform buttonParent;
-
-    private IconSelectionButton[] buttons;
-    private bool doneInit = false;
+    [SerializeField] private IconSelectionButton _iconSelectionButtonPrefab;
+    private Transform _buttonParent;
+    private IconSelectionButton[] _buttons;
+    private bool _doneInit = false;
 
     private void OnEnable()
     {
-        if (!doneInit)
+        if (!_doneInit)
         {
             PopulateIconSelection();
         }
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(_buttons[0].gameObject);
     }
 
     private void PopulateIconSelection()
     {
-        buttonParent = transform;
-        buttons = new IconSelectionButton[StaticData.iconPool.Length];
+        UIManager manager = FindObjectOfType<UIManager>();
+        _buttonParent = transform;
+        _buttons = new IconSelectionButton[StaticData.iconPool.Length];
 
-        for (int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < _buttons.Length; i++)
         {
-            IconSelectionButton button = Instantiate(iconSelectionButtonPrefab, buttonParent, false);
-            button.Init(i);
-            buttons[i] = button;
+            IconSelectionButton button = Instantiate(_iconSelectionButtonPrefab, _buttonParent, false);
+            button.Init(i, manager);
+            _buttons[i] = button;
 
             if (i > 0)
             {
                 Navigation newNavigation = new Navigation();
                 newNavigation.mode = Navigation.Mode.Explicit;
                 newNavigation.selectOnRight = button.myButton;
-                buttons[i - 1].myButton.navigation = newNavigation;
+                _buttons[i - 1].myButton.navigation = newNavigation;
 
-                if (i == buttons.Length - 1)
+                if (i == _buttons.Length - 1)
                 {
-                    newNavigation.selectOnRight = buttons[0].myButton;
+                    newNavigation.selectOnRight = _buttons[0].myButton;
                     button.myButton.navigation = newNavigation;
                 }
             }

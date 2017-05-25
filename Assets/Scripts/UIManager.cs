@@ -8,18 +8,33 @@ public class UIManager : MonoBehaviour
 {
     public GameObject[] panels;
 
+    private int _lastPanel = 0;
+    private int _currentPanel = 0;
     private GameObject _lastSelected;
 
     #region Public Methods
 
-    public void PanelOn(int panel)
+    public void SwitchPanel(int targetPanel)
     {
-        panels[panel].SetActive(true);
+        if (_currentPanel != _lastPanel)
+        {
+            _lastPanel = _currentPanel;
+            panels[_lastPanel].SetActive(false);
+        }
+
+        _currentPanel = targetPanel;
+        panels[_currentPanel].SetActive(true);
     }
 
     public void PanelOff(int panel)
     {
+        _lastPanel = panel;
         panels[panel].SetActive(false);
+    }
+
+    public void ToLastPanel()
+    {
+        SwitchPanel(_lastPanel);
     }
 
     #endregion
@@ -56,7 +71,7 @@ public class UIManager : MonoBehaviour
             PanelOff(i);
         }
 
-        PanelOn(0);
+        SwitchPanel(0);
     }
 
     #endregion

@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2d81202b5f53945878b10161a8fdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconSelectionButtonPrefab: {fileID: 114396282514304896, guid: e3a25cabbf0057f42aefc486913c10df,
+  _iconSelectionButtonPrefab: {fileID: 114396282514304896, guid: e3a25cabbf0057f42aefc486913c10df,
     type: 2}
 --- !u!1 &436391396
 GameObject:
@@ -1008,7 +1008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1635003629
 RectTransform:
   m_ObjectHideFlags: 0

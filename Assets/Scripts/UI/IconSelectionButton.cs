@@ -5,8 +5,9 @@ public class IconSelectionButton : MonoBehaviour
 {
     public Button myButton { get; private set; }
     private int myIndex;
+    private UIManager _manager;
     
-    public void Init(int iconIndex)
+    public void Init(int iconIndex, UIManager manager)
     {
         myIndex = iconIndex;
         myButton = GetComponent<Button>();
@@ -18,6 +19,7 @@ public class IconSelectionButton : MonoBehaviour
     public void ChooseThisIcon()
     {
         StaticData.ChangeTeamIcon(StaticData.currentTeam, myIndex);
+        
     }
 
 }
