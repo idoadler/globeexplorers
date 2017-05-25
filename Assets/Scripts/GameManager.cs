@@ -1,29 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
+    public GameObject iconSelectionPrefab;
     public GameObject[] panels;
 
-    private void Awake()
-    {
-        Init();
-    }
-
-    private void Init()
-    {
-        StaticData.Init();
-        StaticData.teamIcons[0] = Resources.LoadAll<Sprite>("TeamIcons/")[0];
-        StaticData.teamIcons[1] = Resources.LoadAll<Sprite>("TeamIcons/")[1];
-    }
-
-    public void ChangeTeamIcon(int team, int icon)
-    {
-
-    }
+    #region Public Methods
 
     public void PanelOn(int panel)
     {
@@ -34,5 +19,32 @@ public class GameManager : MonoBehaviour
     {
         panels[panel].SetActive(false);
     }
+
+    #endregion
+
+    #region Private Methods
+
+    private void Awake()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        InitPanels();
+        StaticData.Init();
+    }
+
+    private void InitPanels()
+    {
+        for (int i = 1; i < panels.Length; i++)
+        {
+            PanelOff(i);
+        }
+
+        PanelOn(0);
+    }
+
+    #endregion
 
 }
