@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 2737486b316fafd4396e29637bdfa4da
+timeCreated: 1495717029
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aharoni CLM
+  fontNames:
+  - Aharoni CLM
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
