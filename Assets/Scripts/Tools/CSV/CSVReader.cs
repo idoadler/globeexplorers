@@ -51,7 +51,6 @@ public class CSVReader : MonoBehaviour
         for (int i = 0; i < lines.Length; i++)
         {
             string[] row = SplitCsvLine(lines[i]);
-            Debug.Log(row.Length);
             width = Mathf.Max(width, row.Length);
         }
 
