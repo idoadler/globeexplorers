@@ -14,12 +14,8 @@ public class ReadDemo : MonoBehaviour
         string result = "";
         for (int i = 0; i < parsed.GetLength(1); i++)
         { 
-            for (int j = 0; j < parsed.GetLength(0); j++)
-            {
-                result += parsed[j, i] + " | ";
-            }
-            result += "\n";
+            result += parsed[0, i] + " | " + parsed[1, i] + "\n";
         }
-        display.text = result;
+        display.text = ArabicSupport.ArabicFixer.Fix(result);
     }
 }
