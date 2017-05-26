@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TestPuzzle : MonoBehaviour {
     public Puzzle puzzle;
-    private bool running;
+    private bool running = true;
 
 	// Use this for initialization
 	void Start () {
-        puzzle.Init();
-        running = puzzle.UpdateBoard(false);
+        //puzzle.Init();
+        //running = puzzle.UpdateBoard(false);
 	}
 	
 	// Update is called once per frame
