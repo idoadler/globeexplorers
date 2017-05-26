@@ -14,6 +14,7 @@ public class QuestionLogic : MonoBehaviour {
     private List<string[,]> lines = new List<string[,]>();
     public int group1 = 0;
     public int group2 = 0;
+    public bool debug = false;
 
     private Dictionary<string, Sprite> icons = new Dictionary<string, Sprite>();
 
@@ -29,7 +30,8 @@ public class QuestionLogic : MonoBehaviour {
     void Start() {
         group1 = Random.Range(0, csv.Length);
         group2 = Random.Range(0, csv.Length);
-        //SetQuestion(true);
+        if (debug)
+            SetQuestion(true);
     }
 
     public void SetQuestion(bool isGroup1)
