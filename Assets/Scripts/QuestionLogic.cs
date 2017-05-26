@@ -74,7 +74,32 @@ public class QuestionLogic : MonoBehaviour {
         // randomize location
         int randomLoc = Random.Range(0, answers.Length);
         answers[0].transform.SetSiblingIndex(randomLoc);
-	}
+
+        //fix button navigation & focus
+        Transform answerParent = answers[0].transform.parent;
+        Button[] answerButtons = new Button[answerParent.childCount];
+
+        for (int i = 0; i < answerButtons.Length;  i++)
+        {
+            answerButtons[i] = answerParent.GetChild(i).GetComponent<Button>();
+        }
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            Navigation newNavigation = new Navigation();
+            newNavigation.mode = Navigation.Mode.Explicit;
+
+            if (i < answerButtons.Length - 1)
+            {
+                newNavigation.selectOnRight = answerButtons[i + 1];
+            }
+            else
+            {
+                newNavigation.selectOnRight = answerButtons[0];
+            }
+        }
+
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(answerButtons[0].gameObject);
+    }
 
 
 }
