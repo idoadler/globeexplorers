@@ -19,7 +19,7 @@ public class IconDemo : MonoBehaviour {
             icons.Add(s.name, s);
         }
 
-        int r = Random.Range(0, 3);
+        int r = Random.Range(0, 20);
         string line = questionsFile.lines[0, r];
         string[] words = Regex.Split(line, @"\s+");
         List<Sprite> images = new List<Sprite>();

@@ -1,13 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
 [RequireComponent(typeof(GridLayoutGroup))]
 public class Puzzle : MonoBehaviour
 {
+    private const float LERP_TIME = 2;
+
     //We will put here reference to prefab in Editor
     public Image PiecePrefab;
+    public Sprite[] backgrounds;
     public int size = 5;
     public Color standard;
     public Color selected;
@@ -16,7 +18,8 @@ public class Puzzle : MonoBehaviour
     private Color empty = new Color(0,0,0,0);
     private Image[,] pieces;
     private bool midGame = false;
-
+    private Image fadeToEmpty = null;
+    private float fadeTime = 0;
 
     private void OnEnable()
     {
@@ -26,9 +29,14 @@ public class Puzzle : MonoBehaviour
         }
     }
 
-    public void Init ()
+    public void Init()
     {
         midGame = true;
+
+        if (backgrounds.Length > 0)
+        {
+            GetComponent<Image>().sprite = backgrounds[Random.Range(0, backgrounds.Length)];
+        }
 
         Rect rect = this.gameObject.GetComponent<RectTransform>().rect;
         Vector2 newSize = new Vector2(rect.width / size, rect.height / size);
@@ -55,7 +63,7 @@ public class Puzzle : MonoBehaviour
         {
             for (int j = 0; j < size; j++)
             {
-                if (pieces[i, j].color != empty)
+                if (pieces[i, j].color != empty && pieces[i,j] != fadeToEmpty)
                     return false;
             }
         }
@@ -65,7 +73,7 @@ public class Puzzle : MonoBehaviour
     public bool UpdateBoard(bool success)
     {
         if (success)
-            pieces[r1, r2].color = empty;
+            AnimateSuccess();
         else
             pieces[r1, r2].color = standard;
 
@@ -77,12 +85,21 @@ public class Puzzle : MonoBehaviour
         return true;
     }
 
+    private void AnimateSuccess()
+    {
+        if (fadeToEmpty != null)
+        {
+            fadeToEmpty.color = empty;
+        }
+        fadeToEmpty = pieces[r1, r2];
+    }
+
     int r1, r2;
     private void SelectRandomPiece()
     {
         r1 = Random.Range(0, size);
         r2 = Random.Range(0, size);
-        while (pieces[r1, r2].color == empty)
+        while (pieces[r1, r2].color == empty || pieces[r1,r2] == fadeToEmpty)
         {
             r1 = Random.Range(0, size);
             r2 = Random.Range(0, size);
@@ -96,6 +113,21 @@ public class Puzzle : MonoBehaviour
         {
             StaticData.currentUIManager.SwitchPanel(3);
             questionLogic.SetQuestion(StaticData.currentTeam);
+        }
+
+        if (fadeToEmpty != null)
+        {
+            fadeTime += Time.deltaTime / LERP_TIME;
+            if (fadeTime < 1)
+            {
+                fadeToEmpty.color = Color.Lerp(standard, empty, fadeTime);
+            }
+            else
+            {
+                fadeToEmpty.color = empty;
+                fadeToEmpty = null;
+                fadeTime = 0;
+            }
         }
     }
 }
