@@ -552,6 +552,10 @@ Prefab:
       propertyPath: m_Name
       value: 2PuzzlePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1052145830699554, guid: 8a65d63d25382c14b9476fea3a7b48e8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a65d63d25382c14b9476fea3a7b48e8, type: 2}
   m_IsPrefabParent: 0
@@ -634,6 +638,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1063283691}
+--- !u!1 &1177660092 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1052145830699554, guid: 8a65d63d25382c14b9476fea3a7b48e8,
+    type: 2}
+  m_PrefabInternal: {fileID: 870557945}
 --- !u!1 &1548457369
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,42 +865,42 @@ Prefab:
     - target: {fileID: 224364311198411246, guid: f8d6ee37aed3cf947bf7932e5ae1d7b9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -67.2
+      value: -71.67999
       objectReference: {fileID: 0}
     - target: {fileID: 224364311198411246, guid: f8d6ee37aed3cf947bf7932e5ae1d7b9,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 134.4
+      value: 143.35999
       objectReference: {fileID: 0}
     - target: {fileID: 224597692820414834, guid: f8d6ee37aed3cf947bf7932e5ae1d7b9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -201.59999
+      value: -215.03998
       objectReference: {fileID: 0}
     - target: {fileID: 224597692820414834, guid: f8d6ee37aed3cf947bf7932e5ae1d7b9,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 134.4
+      value: 143.35999
       objectReference: {fileID: 0}
     - target: {fileID: 224087815291066682, guid: f8d6ee37aed3cf947bf7932e5ae1d7b9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -336
+      value: -358.39996
       objectReference: {fileID: 0}
     - target: {fileID: 224087815291066682, guid: f8d6ee37aed3cf947bf7932e5ae1d7b9,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 134.4
+      value: 143.35999
       objectReference: {fileID: 0}
     - target: {fileID: 224865042546028664, guid: f8d6ee37aed3cf947bf7932e5ae1d7b9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -470.39996
+      value: -501.75995
       objectReference: {fileID: 0}
     - target: {fileID: 224865042546028664, guid: f8d6ee37aed3cf947bf7932e5ae1d7b9,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 134.4
+      value: 143.35999
       objectReference: {fileID: 0}
     - target: {fileID: 114525746583479932, guid: f8d6ee37aed3cf947bf7932e5ae1d7b9,
         type: 2}
@@ -1149,5 +1158,6 @@ MonoBehaviour:
   _panels:
   - {fileID: 1635003628}
   - {fileID: 374304757}
+  - {fileID: 1177660092}
   - {fileID: 1987673136}
   _firstButton: {fileID: 1619638900}
