@@ -97,7 +97,7 @@ public class QuestionLogic : MonoBehaviour
                 newNavigation.selectOnRight = answerButtons[0];
             }
         }
-
+        
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(answerButtons[0].gameObject);
     }
 
