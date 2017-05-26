@@ -94,8 +94,8 @@ public class Puzzle : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            questionLogic.SetQuestion(StaticData.currentTeam);
             StaticData.currentUIManager.SwitchPanel(3);
+            questionLogic.SetQuestion(StaticData.currentTeam);
         }
     }
 }

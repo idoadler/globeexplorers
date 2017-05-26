@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Answer : MonoBehaviour
@@ -8,6 +9,12 @@ public class Answer : MonoBehaviour
 
     public void Init(string text)
     {
+        GetComponent<Button>().interactable = true;
         answer.text = ArabicSupport.ArabicFixer.Fix(text);
+    }
+
+    internal void Hide()
+    {
+        GetComponent<Button>().interactable = false;
     }
 }

@@ -36,6 +36,7 @@ public class QuestionLogic : MonoBehaviour
 
     public void SetQuestion(int teamNumber)
     {
+        fiftyFiftyButton.gameObject.SetActive(true);
         string subject = StaticData.teamIcons[teamNumber].name;
         icons = new Dictionary<string, Sprite>();
 
@@ -65,6 +66,7 @@ public class QuestionLogic : MonoBehaviour
         answers[0].Init(lines[subject][ANSWER, r]);
         for (int i = 1; i < answers.Length; i++)
         {
+            // TODO: check against all previous answers, not just the correct one
             int r2 = Random.Range(0, length);
             while (r2 == r)
             {
@@ -77,40 +79,84 @@ public class QuestionLogic : MonoBehaviour
         int randomLoc = Random.Range(0, answers.Length);
         answers[0].transform.SetSiblingIndex(randomLoc);
 
+        UpdateNavigation();
+    }
+
+    private void UpdateNavigation()
+    {
         //fix button navigation & focus
         Transform answerParent = answers[0].transform.parent;
         Button[] answerButtons = new Button[answerParent.childCount];
 
-        for (int i = 0; i < answerButtons.Length;  i++)
+        for (int i = 0; i < answerButtons.Length; i++)
         {
             answerButtons[i] = answerParent.GetChild(i).GetComponent<Button>();
         }
 
         Navigation newNavigation = new Navigation();
         newNavigation.mode = Navigation.Mode.Explicit;
+        Button first = null;
 
         for (int i = 0; i < answerButtons.Length; i++)
         {
-            if (i < answerButtons.Length - 1)
+            if (answerButtons[i].interactable)
             {
-                newNavigation.selectOnRight = answerButtons[i + 1];
-            }
-            else
-            {
-                newNavigation.selectOnRight = fiftyFiftyButton;
-            }
+                if (first == null)
+                {
+                    first = answerButtons[i];
+                }
 
-            answerButtons[i].navigation = newNavigation;
+                bool haveNext = false;
+                for (int j = i + 1; j < answerButtons.Length; j++)
+                {
+                    if (answerButtons[j].interactable)
+                    {
+                        haveNext = true;
+                        newNavigation.selectOnRight = answerButtons[j];
+                        break;
+                    }
+                }
+                if (!haveNext)
+                {
+                    if (fiftyFiftyButton.gameObject.activeSelf)
+                    {
+                        newNavigation.selectOnRight = fiftyFiftyButton;
+                    }
+                    else
+                    {
+                        newNavigation.selectOnRight = first;
+                    }
+                }
+
+                answerButtons[i].navigation = newNavigation;
+            }
         }
 
-        newNavigation.selectOnRight = answerButtons[0];
-        fiftyFiftyButton.navigation = newNavigation;
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(answerButtons[0].gameObject);
+        if (fiftyFiftyButton.gameObject.activeSelf)
+        {
+            newNavigation.selectOnRight = first;
+            fiftyFiftyButton.navigation = newNavigation;
+        }
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(first.gameObject);
     }
 
     public void TryAnswer(Answer answer)
     {
         puzzle.UpdateBoard(answer.isCorrectAnswer);
         StaticData.currentUIManager.SwitchPanel(2);
+    }
+
+    public void HalfAnswers()
+    {
+        int keep = Random.Range(1, answers.Length);
+        for (int i = 1; i < answers.Length; i++)
+        {
+            if (i != keep)
+            {
+                answers[i].Hide();
+            }
+        }
+        fiftyFiftyButton.gameObject.SetActive(false);
+        UpdateNavigation();
     }
 }
