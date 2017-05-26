@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image[] _team1Images;
     [SerializeField] private GameObject[] _panels;
     [SerializeField] private GameObject _firstButton;
-    [SerializeField] private Puzzle _puzzle;
 
     private int _lastPanel = 2;
     private int _currentPanel = 2;

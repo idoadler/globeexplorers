@@ -13,6 +13,7 @@ public class QuestionLogic : MonoBehaviour
     public Answer[] answers;
     public TextAsset[] csv;
     public Puzzle puzzle;
+    public Button fiftyFiftyButton;
 
     private Dictionary<string, string[,]> lines = new Dictionary<string, string[,]>();
     public bool debug = false;
@@ -83,21 +84,26 @@ public class QuestionLogic : MonoBehaviour
         {
             answerButtons[i] = answerParent.GetChild(i).GetComponent<Button>();
         }
+
+        Navigation newNavigation = new Navigation();
+        newNavigation.mode = Navigation.Mode.Explicit;
+
         for (int i = 0; i < answerButtons.Length; i++)
         {
-            Navigation newNavigation = new Navigation();
-            newNavigation.mode = Navigation.Mode.Explicit;
-
             if (i < answerButtons.Length - 1)
             {
                 newNavigation.selectOnRight = answerButtons[i + 1];
             }
             else
             {
-                newNavigation.selectOnRight = answerButtons[0];
+                newNavigation.selectOnRight = fiftyFiftyButton;
             }
+
+            answerButtons[i].navigation = newNavigation;
         }
-        
+
+        newNavigation.selectOnRight = answerButtons[0];
+        fiftyFiftyButton.navigation = newNavigation;
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(answerButtons[0].gameObject);
     }
 
