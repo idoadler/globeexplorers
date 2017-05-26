@@ -137,7 +137,9 @@ public class QuestionLogic : MonoBehaviour
             newNavigation.selectOnRight = first;
             fiftyFiftyButton.navigation = newNavigation;
         }
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(first.gameObject);
+        first.gameObject.SetActive(false);
+        first.gameObject.SetActive(true);
+        first.Select();
     }
 
     public void TryAnswer(Answer answer)

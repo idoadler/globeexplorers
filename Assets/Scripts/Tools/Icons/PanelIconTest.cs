@@ -19,10 +19,10 @@ public class PanelIconTest : MonoBehaviour
 
         int length = words.Length;
 
-        float width = this.gameObject.GetComponent<RectTransform>().rect.width;
+        /*float width = this.gameObject.GetComponent<RectTransform>().rect.width;
         width = Mathf.Min(width / length, this.gameObject.GetComponent<RectTransform>().rect.height*.8f);
         Vector2 newSize = new Vector2(width, (width * 1.25f));
-        gameObject.GetComponent<GridLayoutGroup>().cellSize = newSize;
+        gameObject.GetComponent<GridLayoutGroup>().cellSize = newSize;*/
 
         for (int i = 0; i < length; i++)
         {
