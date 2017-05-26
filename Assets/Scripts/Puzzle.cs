@@ -4,18 +4,32 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(GridLayoutGroup))]
-public class Puzzle : MonoBehaviour {
+public class Puzzle : MonoBehaviour
+{
     //We will put here reference to prefab in Editor
     public Image PiecePrefab;
     public int size = 5;
     public Color standard;
     public Color selected;
+    public QuestionLogic questionLogic;
+
     private Color empty = new Color(0,0,0,0);
-
     private Image[,] pieces;
+    private bool midGame = false;
 
-	// Use this for initialization
-	public void Init () {
+
+    private void OnEnable()
+    {
+        if (!midGame)
+        {
+            Init();
+        }
+    }
+
+    public void Init ()
+    {
+        midGame = true;
+
         Rect rect = this.gameObject.GetComponent<RectTransform>().rect;
         Vector2 newSize = new Vector2(rect.width / size, rect.height / size);
         gameObject.GetComponent<GridLayoutGroup>().cellSize = newSize;
@@ -31,6 +45,8 @@ public class Puzzle : MonoBehaviour {
                 pieces[i, j].color = standard;
             }
         }
+
+        UpdateBoard(false);
     }
 
     public bool IsFinished()
@@ -72,5 +88,14 @@ public class Puzzle : MonoBehaviour {
             r2 = Random.Range(0, size);
         }
         pieces[r1, r2].color = selected;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            questionLogic.SetQuestion(StaticData.currentTeam);
+            StaticData.currentUIManager.SwitchPanel(3);
+        }
     }
 }

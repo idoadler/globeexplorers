@@ -3,7 +3,8 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestionLogic : MonoBehaviour {
+public class QuestionLogic : MonoBehaviour
+{
     private const int QUESTION = 0;
     private const int ANSWER = 1;
 
@@ -11,34 +12,31 @@ public class QuestionLogic : MonoBehaviour {
     public PanelIconTest panel;
     public Answer[] answers;
     public TextAsset[] csv;
-    private List<string[,]> lines = new List<string[,]>();
-    public int group1 = 0;
-    public int group2 = 0;
-    public bool debug = false;
+    public Puzzle puzzle;
 
+    private Dictionary<string, string[,]> lines = new Dictionary<string, string[,]>();
+    public bool debug = false;
     private Dictionary<string, Sprite> icons = new Dictionary<string, Sprite>();
 
     void Awake()
     {
         foreach (TextAsset t in csv)
         {
-            lines.Add(CSVReader.SplitCsvGrid(t.text));
+            lines.Add(t.name, CSVReader.SplitCsvGrid(t.text));
         }
     }
 
     // Use this for initialization
-    void Start() {
-        group1 = Random.Range(0, csv.Length);
-        group2 = Random.Range(0, csv.Length);
+    void Start()
+    {
         if (debug)
-            SetQuestion(true);
+            SetQuestion(0);
     }
 
-    public void SetQuestion(bool isGroup1)
+    public void SetQuestion(int teamNumber)
     {
-        int subject = group1;
-        if (!isGroup1)
-            subject = group2;
+        string subject = StaticData.teamIcons[teamNumber].name;
+        icons = new Dictionary<string, Sprite>();
 
         Sprite[] sprites = Resources.LoadAll<Sprite>(iconsPath);
         foreach (Sprite s in sprites)
@@ -58,6 +56,8 @@ public class QuestionLogic : MonoBehaviour {
             else
                 images.Add(null);
         }
+
+        panel.Clear();
 
         panel.Init(words, images.ToArray());
         answers[0].Init(lines[subject][ANSWER, r]);
@@ -101,5 +101,9 @@ public class QuestionLogic : MonoBehaviour {
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(answerButtons[0].gameObject);
     }
 
-
+    public void TryAnswer(Answer answer)
+    {
+        puzzle.UpdateBoard(answer.isCorrectAnswer);
+        StaticData.currentUIManager.SwitchPanel(2);
+    }
 }
