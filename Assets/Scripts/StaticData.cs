@@ -1,21 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public static class StaticData
 {
     public static Sprite[] teamIcons;
     public static Dictionary<string, Sprite> subjects;
-
     public static int currentTeam = 0;
 
+    private static UIManager currentUIManager;
     private static Sprite[] _subjectIcons;
     private static string[] _subjectStrings;
     private const string _subjectIconPath = "SubjectIcons/";
     private const string _textAssetPath = "Questions/";
 
-    public static void Init()
+    public static void Init(UIManager manager)
     {
+        currentUIManager = manager;
+
         //load subject icons
         _subjectIcons = Resources.LoadAll<Sprite>(_subjectIconPath);
         
@@ -50,15 +51,7 @@ public static class StaticData
     public static void ChangeTeamSubject(int team, string subject)
     {
         teamIcons[team] = subjects[subject];
-    }
-}
 
-public struct Point
-{
-    public int X;
-    public int Y;
-    public static implicit operator Vector2(Point p)
-    {
-        return new Vector2(p.X, p.Y);
+        currentUIManager.UpdateTeamIcons(team);
     }
 }

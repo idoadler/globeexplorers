@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private Image[] _team0Images;
+    [SerializeField] private Image[] _team1Images;
     [SerializeField] private GameObject[] _panels;
     [SerializeField] private GameObject _firstButton;
 
@@ -46,6 +49,24 @@ public class UIManager : MonoBehaviour
         SwitchPanel(1);
     }
 
+    public void UpdateTeamIcons(int team)
+    {
+        if (team == 0)
+        {
+            for (int i = 0; i < _team0Images.Length; i++)
+            {
+                _team0Images[i].sprite = StaticData.teamIcons[0];
+            }
+        }
+        else if (team == 1)
+        {
+            for (int i = 0; i < _team1Images.Length; i++)
+            {
+                _team1Images[i].sprite = StaticData.teamIcons[1];
+            }
+        }
+    }
+
     #endregion
 
     #region Private Methods
@@ -73,7 +94,7 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         InitPanels();
-        StaticData.Init();
+        StaticData.Init(this);
     }
 
     private void InitPanels()
