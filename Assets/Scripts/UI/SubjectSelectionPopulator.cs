@@ -21,7 +21,6 @@ public class SubjectSelectionPopulator : MonoBehaviour
 
     private void PopulateIconSelection()
     {
-        UIManager manager = FindObjectOfType<UIManager>();
         _buttonParent = transform;
         _buttons = new SubjectSelectionButton[StaticData.subjects.Count];
 
@@ -31,7 +30,7 @@ public class SubjectSelectionPopulator : MonoBehaviour
         for (int i = 0; i < _buttons.Length; i++)
         {
             SubjectSelectionButton button = Instantiate(_iconSelectionButtonPrefab, _buttonParent, false);
-            button.Init(subjectStrings[i], manager);
+            button.Init(subjectStrings[i]);
             _buttons[i] = button;
 
             if (i > 0)

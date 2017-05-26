@@ -6,8 +6,8 @@ public static class StaticData
     public static Sprite[] teamIcons;
     public static Dictionary<string, Sprite> subjects;
     public static int currentTeam = 0;
+    public static UIManager currentUIManager;
 
-    private static UIManager currentUIManager;
     private static Sprite[] _subjectIcons;
     private static string[] _subjectStrings;
     private const string _subjectIconPath = "SubjectIcons/";
