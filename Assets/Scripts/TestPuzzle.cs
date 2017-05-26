@@ -19,7 +19,7 @@ public class TestPuzzle : MonoBehaviour {
             if (Input.GetMouseButtonDown(0))
             {
                 // is success on last question?
-                running = puzzle.UpdateBoard(Random.value > 0.5);
+                puzzle.UpdateBoard(Random.value > 0.5);
             }
         }
     }

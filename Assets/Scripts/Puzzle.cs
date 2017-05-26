@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
@@ -20,6 +21,7 @@ public class Puzzle : MonoBehaviour
     private bool midGame = false;
     private Image fadeToEmpty = null;
     private float fadeTime = 0;
+    private bool finished;
 
     private void OnEnable()
     {
@@ -31,6 +33,7 @@ public class Puzzle : MonoBehaviour
 
     public void Init()
     {
+        finished = false;
         midGame = true;
 
         if (backgrounds.Length > 0)
@@ -70,7 +73,7 @@ public class Puzzle : MonoBehaviour
         return true;
     }
 
-    public bool UpdateBoard(bool success)
+    public void UpdateBoard(bool success)
     {
         if (success)
             AnimateSuccess();
@@ -78,11 +81,13 @@ public class Puzzle : MonoBehaviour
             pieces[r1, r2].color = standard;
 
         if (IsFinished())
-            return false;
-
-        SelectRandomPiece();
-
-        return true;
+        {
+            finished = true;
+        }
+        else
+        {
+            SelectRandomPiece();
+        }
     }
 
     private void AnimateSuccess()
@@ -111,8 +116,14 @@ public class Puzzle : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            StaticData.currentUIManager.SwitchPanel(3);
-            questionLogic.SetQuestion(StaticData.currentTeam);
+            if (!finished)
+            {
+                StaticData.currentUIManager.SwitchPanel(3);
+                questionLogic.SetQuestion(StaticData.currentTeam);
+            } else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
 
         if (fadeToEmpty != null)
