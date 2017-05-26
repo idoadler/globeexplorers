@@ -9,7 +9,7 @@ public class Answer : MonoBehaviour
     public Text answer;
     public GameObject solution;
 
-    public void Init(string text)
+    public void Init(string text) 
     {
         GetComponent<Button>().interactable = true;
         answer.text = ArabicSupport.ArabicFixer.Fix(text);

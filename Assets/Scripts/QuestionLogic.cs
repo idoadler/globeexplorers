@@ -65,7 +65,7 @@ public class QuestionLogic : MonoBehaviour
 
         panel.Clear();
 
-        panel.Init(words, images.ToArray());
+        panel.Init(words, images.ToArray()); 
         answers[0].Init(lines[subject][ANSWER, r]);
         for (int i = 1; i < answers.Length; i++)
         {
