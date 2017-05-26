@@ -19,14 +19,15 @@ public class IconDemo : MonoBehaviour {
             icons.Add(s.name, s);
         }
 
-        int r = Random.Range(0, 4);
+        int r = Random.Range(0, 3);
         string line = questionsFile.lines[0, r];
-        string[] words = Regex.Split(line, @"\W+");
+        string[] words = Regex.Split(line, @"\s+");
         List<Sprite> images = new List<Sprite>();
         foreach(string word in words)
         {
-            if (icons.ContainsKey(word))
-                images.Add(icons[word]);
+            string cleanWord = Regex.Replace(word, @"\W", "");
+            if (icons.ContainsKey(cleanWord))
+                images.Add(icons[cleanWord]);
             else
                 images.Add(null);
         }
